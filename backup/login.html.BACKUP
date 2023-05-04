@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>TalkRN</title>
+  <link rel="icon" href="https://th.bing.com/th/id/R.664c84e540c523620d3df56a6c5e5b75?rik=i5MMTmJaplbKZg&pid=ImgRaw&r=0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@700&display=swap" rel="stylesheet">
+	<style>
+
+		body {
+			margin: 0;
+			padding-bottom: 3rem;
+      font-family: 'Baloo Thambi 2', cursive;
+      background-color: darkgray;
+      color: white;
+		}
+
+    h1 {
+      text-align: center;
+      font-size: 60px;
+    }
+
+    h4 {
+      margin: 5px;
+    }
+
+    h3 {
+      font-size: 30px;
+      margin: 10px;
+    }
+
+    a {
+      color: green;
+    }
+
+    .opt {
+      position: fixed;
+      right: 80%;
+      top: 25%;
+      z-index: 99999;
+      cursor: pointer;
+      transition: transform .2s;
+    }
+
+    .opt:hover {
+      transform: scale(1.1);
+    }
+	</style>
+<script>
+  // a function to be appended to a button's onclick attribute
+// that redirects them through the repl auth flow
+
+// Example:
+// <button onclick="LoginWithReplit()">Login With Replit</button>
+function LoginWithReplit() {
+  window.addEventListener('message', authComplete);
+  var h = 500;
+  var w = 350;
+  var left = screen.width / 2 - w / 2;
+  var top = screen.height / 2 - h / 2;
+
+  var authWindow = window.open(
+    'https://repl.it/auth_with_repl_site?domain=' + location.host,
+    '_blank',
+    'modal =yes, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' +
+      w +
+      ', height=' +
+      h +
+      ', top=' +
+      top +
+      ', left=' +
+      left,
+  );
+
+  function authComplete(e) {
+    if (e.data !== 'auth_complete') {
+      return;
+    }
+
+    window.removeEventListener('message', authComplete);
+
+    authWindow.close();
+    location.reload();
+  }
+}
+</script>
+    <div class="opt"><img src="https://assetsdad.doxr.repl.co/login.png" width="250" class="lwr" onclick="LoginWithReplit();"></div>
+</head>
+
+<body>
+  <h1>You need to Login using Replit to use TalkRN.</h1>
+  <br>
+  <br>
+  <h3>Press on the button to login. Don't have an account?<br><a href="https://replit.com/sign-up">Sign up for one here!</a><br>TalkRN requires users to login to get usernames and allow moderation.</h3>
+  </body>
+</html>

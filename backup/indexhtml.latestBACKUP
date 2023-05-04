@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>TalkRN</title>
+  <link rel="icon" href="https://th.bing.com/th/id/R.664c84e540c523620d3df56a6c5e5b75?rik=i5MMTmJaplbKZg&pid=ImgRaw&r=0">
+	<style>
+    @keyframes fade-in {
+      from {opacity:0}
+      to {opacity:1}
+    }
+
+		body {
+			margin: 0;
+			padding-bottom: 3rem;
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #1e2124;
+      color: white;
+		}
+
+		#form {
+			background: rgba(0, 0, 0, 0.15);
+			padding: 0.25rem;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			display: flex;
+			height: 3rem;
+			box-sizing: border-box;
+			backdrop-filter: blur(10px);
+		}
+    
+		#input {
+			border: none;
+			padding: 0 1rem;
+			flex-grow: 1;
+			border-radius: 2rem;
+			margin: 0.25rem;
+			outline: none;
+      transition: box-shadow .4s;
+		}
+
+    #input:focus {
+      box-shadow: 5px 10px 18px #888888;
+    }
+
+		#form>button {
+			background: #333;
+			border: none;
+			padding: 0 1rem;
+			margin: 0.25rem;
+			border-radius: 3px;
+			outline: none;
+			color: #fff;
+			transition: all .4s;
+		}
+
+		#form>button:hover {
+			background: rgb(99, 99, 99);
+		}
+
+		#form>button:active {
+			transform: scale(.9);
+		}
+
+		#messages {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		#messages>li {
+			padding: 0.5rem 1rem;
+      animation: fade-in .5s;
+		}
+
+		#messages>li:nth-child(odd) {
+			background: #424549;
+      color: white;
+		}
+	</style>
+</head>
+
+<body>
+	<ul id="messages"></ul>
+	<form id="form" action="">
+		<input id="input" autocomplete="off" maxlength="100" placeholder="Message" />
+    <button>Send</button>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var username = '<%= username %>';
+      var pfp = '<%= profileImage %>';
+
+if (username === "doxr") {
+  var username = "<span style='color: #ff033e;'><b>" + "Doxr " + "<span style='color: darkblue; background-color: white'>[OWNER]</span>" +"</b></span>";
+}
+
+let Admin = ['doxr', 'ShayaanMogal', 'CoderElijah'];
+
+if (username === "ShayaanMogal") {
+  var username = "<span style='color: #ff033e;'><b>" + "ShayaanMogal " + "<span style='color: red; background-color: gray'>{ADMINISTRATOR}</span>" +"</b></span>";
+}
+
+      if (username === "amTyche") {
+  var username = "<span style='color: #ff033e;'><b>" + "amTyche " + "<span style='color: purple; background-color: black'>{BLOCKHEAD}</span>" +"</b></span>";
+}
+
+if (username === "PrabhavKondapal") {
+  var username = "<span style='color: #ff033e;'><b>" + "PrabhavKondapal " + "<span style='color: white; background-color: brown'>{MODERATOR}</span>" +"</b></span>";
+}
+
+if (username === "PrabhavChuchra") {
+  var username = "<span style='color: #ff033e;'><b>" + "PrabhavChuchra " + "<span style='color: green; background-color: lightblue'>{HONORED}</span>" +"</b></span>";
+}
+
+  var socket = io();
+
+if (username === "<span style='color: #ff033e;'><b>" + "Doxr " + "<span style='color: darkblue; background-color: white'>[OWNER]</span>" +"</b></span>") {
+  socket.emit('chat message', '*' + `ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ THE OWNER HAS NOW ARRIVED.` + '*')
+  socket.emit('chat message', '჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻')
+} else if(username === "<span style='color: gray;'><b>" + "ShayaanMogal " + "<span style='color: red; background-color: white'>{ADMINISTRATOR}</span>" +"</b></span>") {
+  socket.emit('chat message', `*The administrator ${username} joined.*`)
+} else if(username === "CoderElijah") {
+  socket.emit('chat message', "*CoderElijah from Ask joined this chat. Hi!*")
+} else {
+  socket.emit('chat message', `*${username} joined.*`)
+}
+
+  var messages = document.getElementById('messages');
+  var form = document.getElementById('form');
+  var input = document.getElementById('input');
+  
+
+  input.focus();
+    
+    </script>
+  <script src="https://dadassets.doxr.repl.co/swear.js">
+  </script>
+  <script>
+    form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  if (input.value) {
+    const filteredInput = filterSwearWords(input.value);
+socket.emit('chat message', '<img src="' + pfp + '" width="30" height="30" style="border-radius: 1rem; vertical-align: middle;">   <span style="margin-left: 15px; display: inline-block; vertical-align: middle;">' + "**" + username + "**" + ": " + filteredInput + '</span>');
+    input.value = '';
+  }
+});
+
+function filterSwearWords(text) {
+  const words = text.split(' ');
+  for (let i = 0; i < words.length; i++) {
+    const word = words[i];
+    if (swearWords.includes(word.toLowerCase())) {
+      return "[CENSORED]";
+    }
+  }
+  return text;
+}
+
+  socket.on('chat message', function(msg) {
+    var item = document.createElement('li');
+    item.innerHTML = msg;
+    messages.appendChild(item);
+    window.scrollTo(0, document.body.scrollHeight); 
+  });
+
+    socket.on('serverchat', function(mag) {
+    var item = document.createElement('li');
+    item.innerHTML = "SERVER-CHAT (OWNER MESSAGE):" + mag;
+    messages.appendChild(item);
+    window.scrollTo(0, document.body.scrollHeight);
+  });
+
+  /*socket.on('user disconnect', function() {
+    var item = document.createElement('li');
+    item.innerHTML = `*${username} left.*`
+    messages.appendChild(item);
+    window.scrollTo(0, document.body.scrollHeight);
+  })*/
+    </script>
+  </body>
+</html>
