@@ -1,0 +1,42 @@
+/*app.get('/assets/:file', function(req, res) { // Nah, you're fine, lemme me make this work for you
+  const fileName = req.params.file;
+  const filePath = path.join(__dirname, "assets", fileName);
+  // Can't you just use express.static and have a catch all at the end which redirects you to /?
+  if (fs.existsSync(filePath)) {
+    res.sendFile(filePath);
+  } else {
+    res.redirect('/')
+  } //maybe, but I know this works. 
+  // but doesn't express.static handle caching? caching probably makes stuff faster
+  // Again, I don't know, I just know this code works because I use a more complex version on my site |what site is it?| I think caching works, maybe. I'd need to log I guess. | website = nice ill check it out https://firepup650.repl.co | up to you, I just know this works. if static is better, then go ahead I suppose.
+  // got it.
+  // Can I just replace all of this with app.use("/assets", express.static("assets")) ? 
+  
+  // Nice site, firepup! I got a password too lol
+  // express.static is better because with this you can do something like /assets/../../../you can access basically any file on the server 
+  // isn't that middleware? ^ isn't that a vulnerability? true... | yes I'm going to exploit your site rn (half joking half dead serious) 
+  // I dont use `static`, so, good luck, lol lol
+  // That's the point. This code theoretically allows you to access any file. express.static doesn't | I misunderstood then. this should still eb okay, because it will not support `/assets/somethinf/etc`, only `/assets/something`, AFAIK, but it is fine for my server, so...  yes
+  // But what about /assets/../../something or maybe I misunderstand how express path segments work
+  // firepup my login screen sucks
+  // wanna help me recreate it 
+  // Im not good at CSS, lol. it's ok it's probably better than what i could do  uhh guys express is not defined...
+  // Another reason to use mine :) | that's because there was a weird require("express")()
+  // ^ did you see my site? lol | yes 
+  // If you saw my site, the  you should know how bad my CSS is, lol ok fine i wont lie it's kinda bad :p but the idea is good. you should use firecss (i want to use it for doxr.repl.co cuz right now it's a bunch of nonsense)
+
+  // umm firepup and grimm soo i have hidden backup files once you guys get a working copy of a file, i like to store it so if i screw something up so bad (not too hard to do) i use my backups. :+1:+1 nice
+  // DO you want to use the chat feature? Or maybe you know this cool website called TalkRN?
+  //still tryna make a good login screen so i'm not logged in lol
+  // Me who can't use chat :/
+   // Makewhy not a  a wefebature site that rgrequest?aphqls into it
+   // We should make a website that graphqls into replit chat (probably against tos) does it use mutations? | almost certaintly | i use gql so i can get pfps of people so i can use the spoofer
+}); //Imma uncomment this, lol. Why? Express.static works <- if express was defined | I fixed that 5 minutes ago lol | Then why didnt you put it in? | It is in (line 113) | (I'm blind, lol) | we all are
+// Why is TalkRN a void?
+what void? i'm not on because i'm working on login (ik i said that like 3 times) also should i just find a free pre coded one? ohh for the login :p i wanted to have a good color
+// By void I meant the blank bright blue screen.
+ */ // also bye everyone i have to go now :P don't abuse the spoofer too much unless you're acting like not-ethan ok byee
+// can we at least have backup the nye?I shshould be logge  I have it in a hidden folder, a backup file?
+// d in, but I'm in the blue void so run loginWithReplit
+// Firepup run LoginWithReplit() in eruda on the login page ok bye 
+// Removing convo, Ill put it in a backup file

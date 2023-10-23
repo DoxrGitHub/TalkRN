@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+@keyframes fade-in {
+  from {opacity:0}
+  to {opacity:1}
+}
+
+body {
+  margin: 0;
+  font-family: 'Rubik', sans-serif;
+  background-color: #212121;
+  color: white;
+  overflow-x: hidden; 
+  display: flex;
+  flex-direction: row;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+#form {
+  padding: 0.25rem;
+  display: flex;
+  height: 3rem;
+  box-sizing: border-box;
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+#input {
+  border: none;
+  padding: 0 1rem;
+  flex-grow: 1;
+  border-radius: 2rem;
+  margin: 0.25rem;
+  outline: none;
+  transition: box-shadow .4s;
+  background-color: #bfbfbf;
+}
+
+#input:focus {
+  box-shadow: 5px 10px 18px #888888;
+}
+
+#form>button {
+  background: #909090;
+  border: none;
+  padding: 0 1rem;
+  margin: 0.25rem;
+  border-radius: 3px;
+  outline: none;
+  color: #000000;
+  transition: all .4s;
+}
+
+#form>button:hover {
+  background: rgb(99, 99, 99);
+  cursor: pointer;
+}
+
+#form>button:active {
+  transform: scale(.9);
+}
+
+#main-area {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+}
+
+#messages {
+  list-style-type: none;
+  padding: 0;
+  min-height: 0;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+#messages>li {
+  padding: 01rem;
+  animation: fade-in .5s;
+}
+
+#messages>li:nth-child(odd) {
+  background: #6b6b6b;
+  color: white;
+}
+
+#help > p {
+  margin: 0;
+}
+
+#userinfo {
+  background-color: #8b8b8b;
+  border-right-width: 10px;
+  border-right-color: black;
+  border-right-style: dashed;
+  padding: 10px;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+#signoutbutton {
+  background-color: #B00;
+  width: 100%;
+  border-radius: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  cursor: pointer;
+  border: 0;
+  color: white;
+  padding: 0.5rem 1rem;
+}
+
+#signoutbutton:hover {
+  background-color: #810404;
+}
+
+#userinfo {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+#usercard {
+  background-color: #584D4D; 
+  border-radius: 0.5rem;
+  margin-top: auto;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+}
+
+#online-users {
+  font-size: smaller;
+}
+
+#messages > li > span {
+  width: calc(100% - 45px);
+  margin-left: 15px;
+  display: inline-block;
+  vertical-align: middle;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+button.expand {
+  border: none;
+  margin: 0;
+  margin-top: 20px;
+  padding: 0.5rem;
+  background-color: #002c5c;
+  color: white;
+  line-height: normal;
+  transition: background-color;
+  cursor: pointer;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+}
+button.expand:hover {
+  background-color: #023d74;
+}
+
+#online-users > button.expand::after {
+  content: "Show Online Users";
+}
+
+#online-users.expanded > button.expand::after {
+  content: "Hide";
+}
+
+@media (min-width: 1024px) and (min-height: 769px) {
+  #online-users > button.expand {
+    display: none;
+  }
+}
+
+@media (max-width: 1023px) or (max-height: 768px) {
+  #online-users:not(.expanded) > :not(button.expand) {
+    display: none;
+  }
+
+  #online-users.expanded {
+    position: fixed;
+    background: #4d505b;
+    padding: 1rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 1023px) {
+  body {
+    flex-direction: column;
+  }
+  h1 {
+    display: none;
+  }
+  #userinfo {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  #usercard {
+    list-style-type: none;
+    margin-bottom: 0;
+  }
+  #usercard > :not(:first-child) {
+    display: none;
+  }
+}

@@ -1,188 +1,61 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+<head lang="en" style="color-scheme: dark only;">
+  <script src="https://cdn.jsdelivr.net/npm/eruda" onload="eruda.init()"></script>
 	<title>TalkRN</title>
-  <link rel="icon" href="https://th.bing.com/th/id/R.664c84e540c523620d3df56a6c5e5b75?rik=i5MMTmJaplbKZg&pid=ImgRaw&r=0">
-	<style>
-    @keyframes fade-in {
-      from {opacity:0}
-      to {opacity:1}
-    }
-
-		body {
-			margin: 0;
-			padding-bottom: 3rem;
-			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #1e2124;
-      color: white;
-		}
-
-		#form {
-			background: rgba(0, 0, 0, 0.15);
-			padding: 0.25rem;
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			display: flex;
-			height: 3rem;
-			box-sizing: border-box;
-			backdrop-filter: blur(10px);
-		}
-    
-		#input {
-			border: none;
-			padding: 0 1rem;
-			flex-grow: 1;
-			border-radius: 2rem;
-			margin: 0.25rem;
-			outline: none;
-      transition: box-shadow .4s;
-		}
-
-    #input:focus {
-      box-shadow: 5px 10px 18px #888888;
-    }
-
-		#form>button {
-			background: #333;
-			border: none;
-			padding: 0 1rem;
-			margin: 0.25rem;
-			border-radius: 3px;
-			outline: none;
-			color: #fff;
-			transition: all .4s;
-		}
-
-		#form>button:hover {
-			background: rgb(99, 99, 99);
-		}
-
-		#form>button:active {
-			transform: scale(.9);
-		}
-
-		#messages {
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-		}
-
-		#messages>li {
-			padding: 0.5rem 1rem;
-      animation: fade-in .5s;
-		}
-
-		#messages>li:nth-child(odd) {
-			background: #424549;
-      color: white;
-		}
-	</style>
+  <link rel="icon" href="https://img.icons8.com/pulsar-color/420/chat.png">
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.3/dist/purify.min.js"></script>
+  <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.min.js"></script>
+  <link href="/assets/style.css" rel="stylesheet" />
 </head>
 
 <body>
-	<ul id="messages"></ul>
-	<form id="form" action="">
-		<input id="input" autocomplete="off" maxlength="2000" placeholder="Message" />
-    <button>Send</button>
+  <div id="userinfo">
+    <h1>TalkRN</h1>
+    <div id="help">
+      <p><strong>$commands</strong> to view commands</p>
+      <p><strong>$rules</strong> to view the rules</p>
+    </div>
+    <div id="online-users">
+      <h3>Online Users:</h2>
+      <ul id="userList">
+        <li>Under construction 🚧</li>
+      </ul>
+      <button type="button" class="expand"></button>
+    </div>
+    <ul id="usercard">
+      <li>Full Username:
+        <strong <% if (flair) { %>style="color: <%= flair.usernameColor %>;"<% } %>>
+          <%= username %><% if (flair) { %> <span style="color: <%= flair.color %>; background-color: <%= flair.bg %>;">[<%= flair.text %>]</span><% } %>
+        </strong>
+      </li>
+      <li>Actual Name: <%= username %></li>
+      <li>User ID: <%= useridrepl %></li>
+    </ul>
+    <form action="/signout" method="post">
+      <button id="signoutbutton" type="submit">SIGN OUT</button>
     </form>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-      var username = '<%= username %>';
-      var pfp = '<%= profileImage %>';
-
-if (username === "doxr") {
-  var username = "<span style='color: #ff033e;'><b>" + "Doxr " + "<span style='color: darkblue; background-color: white'>[OWNER]</span>" +"</b></span>";
-}
-
-let Admin = ['doxr', 'ShayaanMogal', 'CoderElijah'];
-
-if (username === "ShayaanMogal") {
-  var username = "<span style='color: #ff033e;'><b>" + "ShayaanMogal " + "<span style='color: red; background-color: gray'>{ADMINISTRATOR}</span>" +"</b></span>";
-}
-
-      if (username === "amTyche") {
-  var username = "<span style='color: #ff033e;'><b>" + "amTyche " + "<span style='color: purple; background-color: black'>{BLOCKHEAD}</span>" +"</b></span>";
-}
-
-  var socket = io();
-
-if (username === "<span style='color: #ff033e;'><b>" + "Doxr " + "<span style='color: darkblue; background-color: white'>[OWNER]</span>" +"</b></span>") {
-  socket.emit('chat message', '*' + `ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ THE OWNER HAS NOW ARRIVED.` + '*')
-  socket.emit('chat message', '჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻')
-} else if(username === "<span style='color: gray;'><b>" + "ShayaanMogal " + "<span style='color: red; background-color: white'>{ADMINISTRATOR}</span>" +"</b></span>") {
-  socket.emit('chat message', `*The administrator ${username} joined.*`)
-} else if(username === "CoderElijah") {
-  socket.emit('chat message', "*CoderElijah from Ask joined this chat.*")
-} else {
-  socket.emit('chat message', `*${username} joined.*`)
-}
-
-  var messages = document.getElementById('messages');
-  var form = document.getElementById('form');
-  var input = document.getElementById('input');
-  
-
-  input.focus();
-    
-    </script>
-  <script src="https://dadassets.doxr.repl.co/swear.js">
-  </script>
+  </div>
+  <div id="main-area">
+    <ul id="messages"></ul>
+    <div id="sub-area"></div>
+    <% if (!muted) { %>
+  	<form id="form" onsubmit="return false">
+  		<input id="input" autocomplete="off" placeholder="Message" />
+      <button>Send</button>
+    </form>
+    <% } %>
+  </div>
+  <script src="/assets/script2.js"></script>
   <script>
-    form.addEventListener('submit', function(e) {
-  e.preventDefault();
-  if (input.value) {
-    if (username === "<span style='color: #ff033e;'><b>Doxr <span style='color: darkblue; background-color: white'>[OWNER]</span></b></span>" | username === "<span style='color: #ff033e;'><b>" + "ShayaanMogal " + "<span style='color: red; background-color: gray'>{ADMINISTRATOR}</span>" +"</b></span>"| username === "PrabhavChuchra" | username === "PrabhavKondapal") {
-      socket.emit('chat message', '<img src="' + pfp + '" width="30" height="30" style="border-radius: 1rem; vertical-align: middle;">   <span style="margin-left: 15px; display: inline-block; vertical-align: middle;">' + "**" + username + "**" + ": " + input.value + '</span>');
-    input.value = ''; 
-    } else {
-         const filteredInput = filterSwearWords(input.value);
-socket.emit('chat message', '<img src="' + pfp + '" width="30" height="30" style="border-radius: 1rem; vertical-align: middle;">   <span style="margin-left: 15px; display: inline-block; vertical-align: middle;">' + "**" + username + "**" + ": " + filteredInput + '</span>');
-    input.value = ''; 
-    }
-  }
-});
-
-function filterSwearWords(text) {
-  const words = text.split(' ');
-  for (let i = 0; i < words.length; i++) {
-    const word = words[i];
-    if (swearWords.includes(word.toLowerCase())) {
-      return "[CENSORED]";
-    }
-  }
-  return text;
-}
-
-  socket.on('chat message', function(msg) {
-    var item = document.createElement('li');
-    item.innerHTML = msg;
-    messages.appendChild(item);
-    window.scrollTo(0, document.body.scrollHeight); 
-  });
-
-    socket.on('serverchat', function(mag) {
-    var item = document.createElement('li');
-    item.innerHTML = '<span style="margin-left: 15px; display: inline-block; vertical-align: middle;">' + "Automated Chat Message:" + mag + '</span>';
-    messages.appendChild(item);
-    window.scrollTo(0, document.body.scrollHeight);
-  });
-
-    socket.on('sussy', function(msg) {
-    var item = document.createElement('li');
-    item.innerHTML = '<img src="' + 'https://storage.googleapis.com/replit/images/1683216326615_bf968eee93d7c01a064bba1bd0c7efc3.png' + '" width="30" height="30" style="border-radius: 1rem; vertical-align: middle;">   <span style="margin-left: 15px; display: inline-block; vertical-align: middle;">' + "**" + "Justin" + "**" + ": " + msg + '</span>';
-    messages.appendChild(item);
-    window.scrollTo(0, document.body.scrollHeight);
-  });
-
-  /*socket.on('user disconnect', function() {
-    var item = document.createElement('li');
-    item.innerHTML = `*${username} left.*`
-    messages.appendChild(item);
-    window.scrollTo(0, document.body.scrollHeight);
-  })*/
-    </script>
-  </body>
+    const username = '<%= username %>';
+    const modslist = JSON.parse('<%= modslist %>'.replace(/&#34;/g, '"'));
+    const pfp = '<%= profileImage %>';
+    const useridrepl = '<%= useridrepl %>';
+    const muted = JSON.parse('<%= muted %>');
+    const spf = JSON.parse('<%= spf %>'.replace(/&#34;/g, '"')); 
+  </script>
+  <script src="/assets/script.js"></script>
+</body>
 </html>

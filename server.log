@@ -1,0 +1,1 @@
+curl -XDELETE $REPLIT_DB_URL/banned-users

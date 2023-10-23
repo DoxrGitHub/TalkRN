@@ -3,18 +3,23 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "dependencies": {
+    "@replit/database": "^2.0.3",
     "@replit/repl-auth": "^1.0.0",
+    "axios": "^1.5.1",
+    "bad-words": "^3.0.4",
     "commander": "^10.0.0",
     "commmander": "0.0.1-security",
+    "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.3",
-    "ejs": "^3.1.8",
+    "ejs": "^3.1.9",
     "express": "^4.17.1",
+    "javascript-obfuscator": "^4.0.2",
+    "jose": "^4.14.4",
     "markdown-it": "^12.0.4",
-    "marked": "^1.2.7",
-    "socket.io": "^3.1.0"
+    "socket.io": "^4.6.1"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

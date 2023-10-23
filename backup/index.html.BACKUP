@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<title>TalkRN</title>
-  <link rel="icon" href="https://th.bing.com/th/id/R.664c84e540c523620d3df56a6c5e5b75?rik=i5MMTmJaplbKZg&pid=ImgRaw&r=0">
+  <link rel="icon" href="https://img.icons8.com/pulsar-color/420/chat.png">
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Wix+Madefor+Display&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+</style>
 	<style>
     @keyframes fade-in {
       from {opacity:0}
@@ -13,22 +16,21 @@
 		body {
 			margin: 0;
 			padding-bottom: 3rem;
-			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #1e2124;
+      font-family: 'Wix Madefor Display', sans-serif;
+      background-color: #212121;
       color: white;
+      overflow-x: hidden; 
 		}
 
 		#form {
-			background: rgba(0, 0, 0, 0.15);
 			padding: 0.25rem;
 			position: fixed;
 			bottom: 0;
-			left: 0;
+			left: 10%;
 			right: 0;
 			display: flex;
 			height: 3rem;
 			box-sizing: border-box;
-			backdrop-filter: blur(10px);
 		}
     
 		#input {
@@ -37,8 +39,10 @@
 			flex-grow: 1;
 			border-radius: 2rem;
 			margin: 0.25rem;
+      margin-left: 10%;
 			outline: none;
       transition: box-shadow .4s;
+      background-color: #bfbfbf;
 		}
 
     #input:focus {
@@ -46,18 +50,19 @@
     }
 
 		#form>button {
-			background: #333;
+			background: #909090;
 			border: none;
 			padding: 0 1rem;
 			margin: 0.25rem;
 			border-radius: 3px;
 			outline: none;
-			color: #fff;
+			color: #000000;
 			transition: all .4s;
 		}
 
 		#form>button:hover {
 			background: rgb(99, 99, 99);
+      cursor: pointer;
 		}
 
 		#form>button:active {
@@ -66,100 +71,205 @@
 
 		#messages {
 			list-style-type: none;
-			margin: 0;
 			padding: 0;
+      right: 0;
+      margin-left: 10%;
 		}
 
 		#messages>li {
 			padding: 0.5rem 1rem;
       animation: fade-in .5s;
+      right: 0;
+      margin-left: 10%;
 		}
 
 		#messages>li:nth-child(odd) {
-			background: #424549;
+			background: #6b6b6b;
       color: white;
+      right: 0;
+      margin-left: 10%;
 		}
+
+    #userinfo {
+      background-color: #8b8b8b;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      position: fixed;
+      right: 81%;
+      border-right-width: 10px;
+      border-right-color: black;
+      border-right-style: dashed;
+    }
+
+    #margin5 {
+      margin-left: 10px;
+    }
+
+    #signoutbutton {
+      position: absolute;
+      background-color: #B00;
+      width: 100%;
+      height: 30px;
+      border-radius: 3rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 20px;
+      bottom: 0;
+      cursor: pointer;
+    }
+
+    #signoutbutton:hover {
+      cursor: pointer;
+    }
+    #usercard {
+      background-color: #584D4D; 
+      border-radius: 1rem;
+      width: 100%;
+      height: 75px;
+      position: absolute;
+      margin-bottom: 33px;
+      bottom: 0;
+    }
 	</style>
 </head>
 
 <body>
 	<ul id="messages"></ul>
-	<form id="form" action="">
-		<input id="input" autocomplete="off" maxlength="100" placeholder="Message" />
+  <div id="userinfo"><h2 style="margin-left: 15px;">Commands:</h2><div id="margin5"><h3>Regular:</h3><b>$clear (Clear the chat)</b><h3>Moderators:</h3><b>$refresh (Force all users to refresh; install updates)</b></div><div id="usercard"></div>    <form action="/signout" method="post">
+      <button id="signoutbutton" type="submit">SIGN OUT</button>
+    </form></div>
+	<form id="form">
+		<input id="input" autocomplete="off" maxlength="55" placeholder="Message" />
     <button>Send</button>
     </form>
-    <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+  <script>
+    // Temporary site lock. You will need to use the official TalkRN right now. Forking will be supported... later.
+var _0x5d0420=_0xbda0;(function(_0x445e9c,_0x4db68b){var _0x4ed614=_0xbda0,_0x559679=_0x445e9c();while(!![]){try{var _0x2bb083=-parseInt(_0x4ed614(0x193))/0x1*(parseInt(_0x4ed614(0x195))/0x2)+-parseInt(_0x4ed614(0x197))/0x3*(parseInt(_0x4ed614(0x194))/0x4)+-parseInt(_0x4ed614(0x192))/0x5+-parseInt(_0x4ed614(0x18a))/0x6+parseInt(_0x4ed614(0x198))/0x7*(-parseInt(_0x4ed614(0x196))/0x8)+parseInt(_0x4ed614(0x18c))/0x9+parseInt(_0x4ed614(0x18f))/0xa;if(_0x2bb083===_0x4db68b)break;else _0x559679['push'](_0x559679['shift']());}catch(_0x45692f){_0x559679['push'](_0x559679['shift']());}}}(_0x2555,0xa4eb1));function _0xbda0(_0x21aefd,_0x2483b6){var _0x2555dc=_0x2555();return _0xbda0=function(_0xbda011,_0x25f9ac){_0xbda011=_0xbda011-0x18a;var _0x556cad=_0x2555dc[_0xbda011];return _0x556cad;},_0xbda0(_0x21aefd,_0x2483b6);}location[_0x5d0420(0x199)]===_0x5d0420(0x18b)||location[_0x5d0420(0x199)]===_0x5d0420(0x18d)?console['log'](''):window[_0x5d0420(0x190)][_0x5d0420(0x18e)](_0x5d0420(0x191));function _0x2555(){var _0x5169bd=['368YyywYJ','13911aABFFd','9548IrkZLb','host','2219298DiRGuo','7f199e24-c0fd-4d79-a906-36f936ad6284.id.repl.co','11868822yESnsQ','talkrn.doxr.repl.co','replace','28873330NDjNvt','location','https://talkrn.doxr.repl.co','3220755hXKGRA','1289921EdNjrN','1004JxkLMb','2PAvdLq'];_0x2555=function(){return _0x5169bd;};return _0x2555();}
+  </script>
     <script>
-      var username = '<%= username %>';
-      var pfp = '<%= profileImage %>';
+var username = '<%= username %>';
+var pfp = '<%= profileImage %>';
+var useridrepl = '<%= useridrepl %>';
+
+      let rawuser = username;
 
 if (username === "doxr") {
-  var username = "<span style='color: #ff033e;'><b>" + "Doxr " + "<span style='color: darkblue; background-color: white'>[OWNER]</span>" +"</b></span>";
+    var username = "<span style='color: cyan;'><b>" + "Doxr " + "<span style='color: darkblue; background-color: white'>[OWNER]</span>" +"</b></span>";
 }
 
-let Admin = ['doxr', 'ShayaanMogal', 'CoderElijah'];
+let owner = "<span style='color: cyan;'><b>" + "Doxr " + "<span style='color: darkblue; background-color: white'>[OWNER]</span>" +"</b></span>";
 
 if (username === "ShayaanMogal") {
-  var username = "<span style='color: #ff033e;'><b>" + "ShayaanMogal " + "<span style='color: red; background-color: gray'>{ADMINISTRATOR}</span>" +"</b></span>";
+  var username = "<span style='color: #ff033e;'><b>" + "ShayaanMogal " + "<span style='color: cyan; background-color: gray'>{ADMINISTRATOR}</span>" +"</b></span>";
 }
+
+let mods = [`<span style='color: #ff033e;'><b>ShayaanMogal <span style='color: cyan; background-color: gray'>{ADMINISTRATOR}</span></b></span>`, owner];
 
       if (username === "amTyche") {
   var username = "<span style='color: #ff033e;'><b>" + "amTyche " + "<span style='color: purple; background-color: black'>{BLOCKHEAD}</span>" +"</b></span>";
 }
 
-if (username === "PrabhavKondapal") {
-  var username = "<span style='color: #ff033e;'><b>" + "PrabhavKondapal " + "<span style='color: white; background-color: brown'>{MODERATOR}</span>" +"</b></span>";
-}
-
-if (username === "PrabhavChuchra") {
-  var username = "<span style='color: #ff033e;'><b>" + "PrabhavChuchra " + "<span style='color: green; background-color: lightblue'>{HONORED}</span>" +"</b></span>";
-}
 
   var socket = io();
-
-if (username === "<span style='color: #ff033e;'><b>" + "Doxr " + "<span style='color: darkblue; background-color: white'>[OWNER]</span>" +"</b></span>") {
-  socket.emit('chat message', '*' + `ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ THE OWNER HAS NOW ARRIVED.` + '*')
-  socket.emit('chat message', '჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻჻')
+      
+if (username === owner) {
+  socket.emit('chat message', '*' + `The owner, @doxr, has arrived to TalkRN.` + '*')
 } else if(username === "<span style='color: gray;'><b>" + "ShayaanMogal " + "<span style='color: red; background-color: white'>{ADMINISTRATOR}</span>" +"</b></span>") {
   socket.emit('chat message', `*The administrator ${username} joined.*`)
 } else if(username === "CoderElijah") {
-  socket.emit('chat message', "*CoderElijah from Ask joined this chat. Hi!*")
+  socket.emit('chat message', "*CoderElijah from Ask joined this chat.*")
 } else {
   socket.emit('chat message', `*${username} joined.*`)
 }
 
-  var messages = document.getElementById('messages');
-  var form = document.getElementById('form');
-  var input = document.getElementById('input');
-  var userlist = document.getElementById('userboy');
+  let messages = document.getElementById('messages');
+  let form = document.getElementById('form');
+  let input = document.getElementById('input');
+  let usercard = document.getElementById('usercard');
   
 
   input.focus();
+
+    
     </script>
   <script src="https://dadassets.doxr.repl.co/swear.js">
   </script>
   <script>
 
+function fillUsercard() {
+    var docuser = document.createElement('li');
+    docuser.innerHTML = 'Full Username: ' + username;
+    usercard.appendChild(docuser);
+    var brouser = document.createElement('li');
+    brouser.innerHTML = 'Actual Name: ' + rawuser;
+    usercard.appendChild(brouser);
+    var lastone = document.createElement('li');
+    lastone.innerHTML = 'User ID: ' + useridrepl;
+    usercard.appendChild(lastone);
+}
+    
+let muted = ['CoderElijah', 'amasad'];
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  if (input.value && input.value.trim() !== "") {
+    if (input.value.slice(0, 8) === "$refresh" && mods.includes(username)) {
+      socket.emit('refresh');
+    } else if (input.value === "$clear") {
+      messages.innerHTML = "";
+      var item = document.createElement('li');
+      item.innerHTML = 'Cleared chat.';
+      messages.appendChild(item);
+      window.scrollTo(0, document.body.scrollHeight);
+      input.value = '';
+    } else if (username === owner || username === "PrabhavKondapal" || username === "PrabhavChuchra") {
+      socket.emit('chat message', '<img src="' + pfp + '" width="30" height="30" style="border-radius: 1rem; vertical-align: middle;">   <span style="margin-left: 15px; display: inline-block; vertical-align: middle;">' + "**" + username + "**" + ": " + input.value + '</span>');
+      input.value = ''; 
+    } else if (!muted.includes(username)) {
+      const filteredInput = filterSwearWords(input.value);
+      socket.emit('chat message', '<img src="' + pfp + '" width="30" height="30" style="border-radius: 1rem; vertical-align: middle;">   <span style="margin-left: 15px; display: inline-block; vertical-align: middle;">' + "**" + username + "**" + ": " + filteredInput + '</span>');
+      input.value = ''; 
+    } else {
+      input.value = '';
+    }
+  } else {
+    input.value = '';
+  }
+});
+
+
+
+    socket.on('refresh', () => {
+      window.location.reload();
+    });
+
+function filterSwearWords(text) {
+  const words = text.split(' ');
+  for (let i = 0; i < words.length; i++) {
+    const word = words[i];
+    if (swearWords.includes(word.toLowerCase())) {
+      return "[CENSORED]";
+    }
+  }
+  return text;
+}
+
   socket.on('chat message', function(msg) {
     var item = document.createElement('li');
     item.innerHTML = msg;
     messages.appendChild(item);
-    window.scrollTo(0, document.body.scrollHeight);
+    window.scrollTo(0, document.body.scrollHeight); 
   });
 
     socket.on('serverchat', function(mag) {
     var item = document.createElement('li');
-    item.innerHTML = "SERVER-CHAT (OWNER MESSAGE):" + mag;
+    item.innerHTML = '<img src="' + 'https://th.bing.com/th/id/R.f6da398ea55469706c8aa3b8ae2d4ef8?rik=vi6XOmcD%2f6E2OA&riu=http%3a%2f%2ficons.iconarchive.com%2ficons%2fdiversity-avatars%2favatars%2f1024%2frobot-01-icon.png&ehk=R%2fAoAL0NmapI5vdA%2fZRT25vxevd3SQU6vgnhwLQ0i3A%3d&risl=&pid=ImgRaw&r=0' + '" width="30" height="30" style="border-radius: 1rem; vertical-align: middle;">   <span style="margin-left: 15px; display: inline-block; vertical-align: middle;">' + '<b>' + 'Automated Message [AUTOMATED]' + "</b>" + ": " + mag + '</span>';
     messages.appendChild(item);
     window.scrollTo(0, document.body.scrollHeight);
   });
 
-  /*socket.on('user disconnect', function() {
-    var item = document.createElement('li');
-    item.innerHTML = `*${username} left.*`
-    messages.appendChild(item);
-    window.scrollTo(0, document.body.scrollHeight);
-  })*/
+    fillUsercard();
     </script>
   </body>
 </html>
