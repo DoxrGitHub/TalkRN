@@ -507,7 +507,7 @@ app.use("/assets", express.static("assets"));
 
 // Make sure we only start up after getting the list of banned users
 await fetchBannedUsers();
-http.listen(process.env.PORT, () => {
+http.listen(3000, () => {
   console.log('\x1b[32m' + 'TalkRN server started.');
   console.log('\x1b[41m' + 'COMMAND ZONE');
   console.log('\x1b[41m' + 'In Console, there are some commands. Type the command and press   Enter.');
