@@ -126,13 +126,16 @@ html, body {
   flex-direction: column;
   flex-shrink: 0;
 }
+
 #usercard {
-  background-color: #584D4D; 
-  border-radius: 0.5rem;
+  background-color: #3a3a3a;
+  border-radius: 1rem;
   margin-top: auto;
-  padding: 1rem;
-  margin-bottom: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
   box-sizing: border-box;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
 }
 
 #online-users {

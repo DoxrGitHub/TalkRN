@@ -34,15 +34,16 @@ if (filteredMessage.startsWith("@charles")) {
 }
 */
 
-const owner = ["doxr", "chasejor1665" ,"FBI-CONNECT", "akashkar0766"];
-const mods = ["doxr", "FrankVolante", "GrimSteel", "GrantKates", "Firepup650", "chasejor1655", "amTyche", 'FBI-CONNECT'];
+const owner = ["doxr", "chasejor1665" ,"FBI-CONNECT", "RedCoder"];
+const mods = ["doxr", "RedCoder", "FrankVolante", "GrimSteel", "GrantKates", "Firepup650", "chasejor1655", "amTyche", 'FBI-CONNECT', "akashkar0766"];
 const muted = [];
 let bannedUsers = [];
-const bypassFilters = ["PrabhavKondapal", "PrabhavChuchra", "doxr", "KarshakMatham", "ShayaanMogal", "Firepup650"];
+const bypassFilters = ["PrabhavKondapal", "PrabhavChuchra", "doxr", "KarshakMatham", "ShayaanMogal", "Firepup650", "RedCoder"];
 const noPfp = ["https://i2.wp.com/replit.com/public/images/evalbot/evalbot_17.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_18.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_19.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_20.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_21.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_22.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_23.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_24.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_25.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_26.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_27.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_28.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_29.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_30.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_31.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_32.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_33.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_34.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_35.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_36.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_37.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_38.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_39.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_40.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_41.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_42.png", "https://i2.wp.com/replit.com/public/images/evalbot/evalbot_43.png"];
 
 const customJoinMessages = {
   "doxr": "*The owner, @doxr, has arrived to TalkRN*",
+  "RedCoder": "*@RedCoder, the coolest person in the world, has come online :)*",
   "CoderElijah": "*CoderElijah from Ask joined this chat.*",
   "ShayaanMogal": "*ShayaanMogal joined TalkRN.*",
   "Firepup650": "*The spoofer, Firepup650, has joined the room*"
@@ -51,6 +52,12 @@ const customJoinMessages = {
 const flairs = {
   doxr: {
     text: "OWNER",
+    bg: "white",
+    color: "darkblue",
+    usernameColor: "cyan"
+  },
+  RedCoder: {
+    text: "CO-OWNER",
     bg: "white",
     color: "darkblue",
     usernameColor: "cyan"
@@ -416,10 +423,11 @@ io.on('connection', (socket) => {
       const filteredMessage = bypassFilters.includes(username) ? msg : filter.isProfane(msg) ? "[CENSORED]" : msg;
       io.emit('chat message', JSON.stringify({ 
         msg: filteredMessage, 
-        username, // Use the correct variable for the username
-        pfp,     // Use the correct variable for the profile picture
+        username,
+        pfp,
         hideUsername: false, 
-        flair: flairs[username] || null 
+        flair: flairs[username] || null,
+        time: new Date(new Date().toUTCString()) + ''
       }));
       if (filteredMessage.toLowerCase().startsWith("@charles")) {
         try {
@@ -429,7 +437,8 @@ io.on('connection', (socket) => {
             username: 'Charles', // Use the correct username for the bot
             pfp: 'https://th.bing.com/th/id/R.f2ae9fb395860bc6b659f5434aca7e4e?rik=x91x0EDojGTK2w&pid=ImgRaw&r=0', // Use the correct profile picture for the bot
             hideUsername: false, 
-            flair: flairs['charles'] || null
+            flair: flairs['charles'] || null,
+            time: 'right now (new feature)'
           }));
         } catch (error) {
           console.error(error);
@@ -444,7 +453,8 @@ io.on('connection', (socket) => {
             username: 'DoxrGPT', // Use the correct username for the bot
             pfp: 'https://www.bacancytechnology.com/blog/wp-content/uploads/2019/08/ezgif.com-optimize-5.gif', // Use the correct profile picture for the bot
             hideUsername: false, 
-            flair: flairs['charles'] || null
+            flair: flairs['charles'] || null,
+            time: 'right now (new feature)'
           }));
         } catch (error) {
           console.error(error);

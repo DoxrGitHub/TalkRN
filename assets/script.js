@@ -103,7 +103,7 @@ socket.on('refresh', () => window.location.reload());
 
 // sorry im an idiot i fixed it
 socket.on('chat message', function(rawMsg) {
-  const { pfp, username, msg, hideUsername, flair } = JSON.parse(rawMsg);
+  const { pfp, username, msg, hideUsername, flair, time } = JSON.parse(rawMsg);
   const chatItem = document.createElement('li');
   const pfpEl = chatItem.appendChild(new Image(30, 30));
   pfpEl.style.borderRadius = "1rem";
@@ -115,11 +115,15 @@ socket.on('chat message', function(rawMsg) {
   contentSpan.innerHTML = DOMPurify.sanitize(md.renderInline(filteredMsg), { FORBID_ATTR: ["onclick", "onload", "id", "class", "onkeypress"], FORBID_TAGS: ["style", "button", 'input', "h1", "h2", "h3", "h4", "h5", "h6", "iframe", "embed", "form", "audio", "video", "object", "html", "head", "body"] });
   if (!hideUsername) {
     const usernameStrong = renderFlair(flair, username);
-    msgSpan.append(usernameStrong, ": ");
+    const formattedTime = new Date(time).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+    
+    let htmlTime = ''  + formattedTime + ''
+    msgSpan.append(usernameStrong, ' (' + htmlTime + ')', ": ");
   }
   msgSpan.appendChild(contentSpan);
   messages.appendChild(chatItem);
-  scrollToBottom("messages"); 
+  scrollToBottom("messages");
+  // WORKS
 });
 
 socket.on('modmessage', function(buggy) {
